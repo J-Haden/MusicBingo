@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from src.bingo import create_bingo_card
 from pathlib import Path
 from src.excel import create_excel_card
 from src.pdf import convert_excel_to_pdf, merge_pdfs
+from src.cleanup import clear_folder
+
 
 app = Flask(__name__)
 
@@ -26,6 +28,8 @@ def generate():
     temp_folder = Path('temp')
     
     temp_folder.mkdir(exist_ok=True)
+    clear_folder(temp_folder)
+    clear_folder(Path('output'))
     
     for i in range(number_of_sheets):
         card = create_bingo_card(song_list)
@@ -41,9 +45,13 @@ def generate():
         pdf_files.append(pdf_file)
     
     final_pdf = Path(f'output/{title}music_bingo.pdf')
-    merge_pdfs(pdf_files, final_pdf)
+    merge_pdfs(pdf_files, final_pdf) 
     
-    return 'Processed!'
+    return send_file(
+        final_pdf,
+        as_attachment=True,
+        download_name=f'{title}_bingo_card.pdf'
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
