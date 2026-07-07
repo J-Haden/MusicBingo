@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from src.bingo import create_bingo_card
 from pathlib import Path
 from src.excel import create_excel_card
+from src.pdf import convert_excel_to_pdf, merge_pdfs
 
 app = Flask(__name__)
 
@@ -32,6 +33,15 @@ def generate():
         output = temp_folder / f'{title}_{i+1}.xlsx'
         
         create_excel_card(card, title, template, output)
+    
+    pdf_files = []
+    
+    for excel_file in temp_folder.glob('*.xlsx'):
+        pdf_file = convert_excel_to_pdf(excel_file, temp_folder)
+        pdf_files.append(pdf_file)
+    
+    final_pdf = Path(f'output/{title}music_bingo.pdf')
+    merge_pdfs(pdf_files, final_pdf)
     
     return 'Processed!'
 
