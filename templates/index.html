@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Music Bingo Generator</title>
-    </head>
+<head>
+    <title>Music Bingo Generator</title>
+</head>
+
 <body>
     <h1>Music Bingo Generator</h1>
-    <p>Currently Running!</p>
+
+    <form method="POST" action="/generate">
+
+        <label for="title">Game Title:</label><br>
+        <input type="text" id="title" name="title" required>
+        <br><br>
+
+        <label for="songs">Song List (one song per line):</label><br>
+        <textarea 
+            id="songs" 
+            name="songs" 
+            rows="15" 
+            cols="50"
+            required></textarea>
+        <br><br>
+
+        <label for="number_of_sheets">Number of Sheets:</label><br>
+        <input 
+            type="number" 
+            id="number_of_sheets" 
+            name="number_of_sheets"
+            min="1"
+            value="1"
+            required>
+        <br><br>
+
+        <button type="submit">Generate Bingo Cards</button>
+
+    </form>
+
 </body>
 </html>
