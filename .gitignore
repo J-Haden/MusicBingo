@@ -8,6 +8,9 @@ __pycache__/
 # IDE
 .vscode/
 
+# Docker
+*.log
+
 # Temporary files
 temp/
 uploads/

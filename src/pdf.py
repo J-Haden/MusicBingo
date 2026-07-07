@@ -1,7 +1,9 @@
 from pathlib import Path
 import subprocess
 from pypdf import PdfWriter
-LIBREOFFICE_PATH = r'C:/Program Files/LibreOffice/program/soffice.exe'
+import os
+
+LIBREOFFICE_PATH = os.getenv('LIBREOFFICE_PATH', 'libreoffice')
 
 def convert_excel_to_pdf(excel_file, output_folder):
     excel_file = Path(excel_file)
