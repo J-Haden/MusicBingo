@@ -6,6 +6,15 @@
 
 <body>
     <h1>Music Bingo Generator</h1>
+    <h3>Click an Artist Name to Load Songs</h3>
+    <div id="artist-buttons"></div>
+
+    <h3>Or Search for an Artist:</h3>
+
+    <input type="text" id='artist-search' placeholder = 'Enter artist name'>
+    <button id = 'search-button'>Search</button>
+
+    <h3>Or Enter Your Own List</h3>
 
     <form method="POST" action="/generate">
 
@@ -36,5 +45,7 @@
 
     </form>
 
+    <button type="text" id='clear-button'>Clear Form</button>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

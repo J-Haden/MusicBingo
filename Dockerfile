@@ -3,9 +3,13 @@ FROM python:3.11-slim
 WORKDIR /app
 
 RUN apt-get update && \
-    apt-get install -y libreoffice && \
+    apt-get install -y libreoffice fontconfig && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+COPY fonts /usr/share/fonts/truetype/custom
+
+RUN fc-cache -f -v
 
 COPY requirements.txt .
 

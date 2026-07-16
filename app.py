@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, jsonify
 from src.bingo import create_bingo_card
 from pathlib import Path
 from src.excel import create_excel_card
 from src.pdf import convert_excel_to_pdf, merge_pdfs
 from src.cleanup import clear_folder
+from src.lastfm import get_top_artists, get_top_tracks
 
 
 app = Flask(__name__)
@@ -53,5 +54,18 @@ def generate():
         download_name=f'{title}_bingo_card.pdf'
     )
 
+@app.route('/api/artists')
+def artists():
+    return jsonify(get_top_artists())
+
+@app.route('/api/artists/<artist>')
+def artist_tracks(artist):
+    return jsonify(get_top_tracks(artist))
+
+@app.route('/api/search')
+def artist_search():
+    artist = request.args.get('artist')
+    return jsonify(get_top_tracks(artist))
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
