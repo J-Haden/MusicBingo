@@ -73,6 +73,8 @@ The Flask application includes endpoints for music data and playlist functionali
 * `/api/recent_artists`
 * `/api/artists`
 * `/api/artists/<artist>`
+* `/api/top-tags`
+* `/api/tag-songs/<tag>`
 * `/api/create_playlist`
 
 ## Security
