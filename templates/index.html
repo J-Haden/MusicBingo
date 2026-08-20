@@ -1,51 +1,374 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Music Bingo Generator</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 </head>
 
 <body>
-    <h1>Music Bingo Generator</h1>
-    <h3>Click an Artist Name to Load Songs</h3>
-    <div id="artist-buttons"></div>
 
-    <h3>Or Search for an Artist:</h3>
+<header class="page-header">
+    <div class="header-content">
+        <div>
+            <p class="eyebrow">MUSIC BINGO</p>
+            <h1>Music Bingo Generator</h1>
+            <p class="subtitle">
+                Build bingo cards from your favorite music.
+            </p>
+        </div>
 
-    <input type="text" id='artist-search' placeholder = 'Enter artist name'>
-    <button id = 'search-button'>Search</button>
+        <a class="spotify-link" href="/spotify/login">
+            <span class="spotify-dot"></span>
+            Connect Spotify
+        </a>
+    </div>
+</header>
 
-    <h3>Or Enter Your Own List</h3>
 
-    <form method="POST" action="/generate">
+<main class="container">
 
-        <label for="title">Game Title:</label><br>
-        <input type="text" id="title" name="title" required>
-        <br><br>
+    <!-- ============================================
+         SECTION 1: SELECT MUSIC
+    ============================================= -->
 
-        <label for="songs">Song List (one song per line):</label><br>
-        <textarea 
-            id="songs" 
-            name="songs" 
-            rows="15" 
-            cols="50"
-            required></textarea>
-        <br><br>
+    <section class="card">
 
-        <label for="number_of_sheets">Number of Sheets:</label><br>
-        <input 
-            type="number" 
-            id="number_of_sheets" 
-            name="number_of_sheets"
-            min="1"
-            value="1"
-            required>
-        <br><br>
+        <div class="section-header">
+            <div>
+                <p class="section-label">01</p>
+                <h2>Select Your Music</h2>
+            </div>
 
-        <button type="submit">Generate Bingo Cards</button>
+            <p class="section-description">
+                Choose an artist or music tag to build your song list.
+            </p>
+        </div>
 
-    </form>
 
-    <button type="text" id='clear-button'>Clear Form</button>
+        <!-- TABS -->
+
+        <div class="tabs">
+
+            <button
+                type="button"
+                class="tab-button active"
+                data-tab="artist-tab"
+            >
+                Artist
+            </button>
+
+            <button
+                type="button"
+                class="tab-button"
+                data-tab="tag-tab"
+            >
+                Genre / Tag
+            </button>
+
+            <button
+                type="button"
+                class="tab-button disabled-tab"
+                disabled
+                title="Coming soon"
+            >
+                Spotify Playlist - Coming Soon!
+            </button>
+
+        </div>
+
+
+        <!-- ============================================
+             ARTIST TAB
+        ============================================= -->
+
+        <div id="artist-tab" class="tab-content active">
+
+            <div class="artist-section">
+
+                <h3>Top Artists</h3>
+
+                <div
+                    id="artist-buttons"
+                    class="artist-buttons"
+                ></div>
+
+            </div>
+
+
+            <div class="artist-section">
+
+                <div class="subsection-header">
+                    <h3>Recently Played</h3>
+
+                    <span class="spotify-badge">
+                        Spotify
+                    </span>
+                </div>
+
+                <div
+                    id="recent-artist-buttons"
+                    class="artist-buttons"
+                >
+                    <span class="loading">
+                        Loading recent artists...
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="artist-search">
+
+                <h3>Search for an Artist</h3>
+
+                <div class="search-row">
+
+                    <input
+                        type="text"
+                        id="artist-search"
+                        placeholder="Enter artist name"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        id="search-button"
+                        class="secondary-button"
+                    >
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ============================================
+             GENRE / TAG TAB
+        ============================================= -->
+
+        <div id="tag-tab" class="tab-content">
+
+            <div class="tag-search">
+
+                <h3>Popular Tags</h3>
+
+                <p class="helper-text">
+                    Choose a popular Last.fm tag to generate a song list.
+                </p>
+
+                <div
+                    id="tag-buttons"
+                    class="artist-buttons"
+                ></div>
+
+            </div>
+
+
+            <div class="tag-search">
+
+                <h3>Search for a Genre or Tag</h3>
+
+                <p class="helper-text">
+                    Search for any Last.fm tag, such as a genre,
+                    decade, style, or mood.
+                </p>
+
+                <div class="search-row">
+
+                    <input
+                        type="text"
+                        id="tag-search"
+                        placeholder="e.g. jazz, 80s, alternative"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        id="tag-search-button"
+                        class="secondary-button"
+                    >
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================================
+         SECTION 2: BUILD BINGO GAME
+    ============================================= -->
+
+    <section class="card">
+
+        <div class="section-header">
+
+            <div>
+                <p class="section-label">02</p>
+                <h2>Build Your Bingo Game</h2>
+            </div>
+
+            <p class="section-description">
+                Review your songs and configure your bingo cards.
+            </p>
+
+        </div>
+
+
+        <form method="POST" action="/generate">
+
+            <div class="form-group">
+
+                <label for="title">
+                    Game Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="e.g. 90s Rock Bingo"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="label-row">
+
+                    <label for="songs">
+                        Song List
+                    </label>
+
+                    <span>
+                        One song per line
+                    </span>
+
+                </div>
+
+                <textarea
+                    id="songs"
+                    name="songs"
+                    rows="15"
+                    placeholder="Select an artist or tag above..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group small-field">
+
+                <label for="number_of_sheets">
+                    Number of Sheets
+                </label>
+
+                <input
+                    type="number"
+                    id="number_of_sheets"
+                    name="number_of_sheets"
+                    min="1"
+                    value="1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Generate Bingo Cards
+                </button>
+
+                <button
+                    type="button"
+                    id="clear-button"
+                    class="text-button"
+                >
+                    Clear Form
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- ============================================
+         SECTION 3: SPOTIFY PLAYLIST
+    ============================================= -->
+
+    <section class="card spotify-card">
+
+        <div class="section-header">
+
+            <div>
+                <p class="section-label">03</p>
+                <h2>Spotify Playlist</h2>
+            </div>
+
+            <p class="section-description">
+                Create a Spotify playlist from your current song list.
+            </p>
+
+        </div>
+
+
+        <div class="spotify-action">
+
+            <div>
+
+                <h3>Create Playlist</h3>
+
+                <p>
+                    Your current song list will be sent to Spotify
+                    and added to a new private playlist.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                id="generate-playlist"
+                class="spotify-button"
+            >
+                Create Spotify Playlist
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>Music Bingo Generator</p>
+</footer>
+
+
 <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
 </html>

@@ -1,0 +1,607 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #1f2937;
+  background: #f4f5f7;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ------------------------------
+   Header
+------------------------------ */
+
+.page-header {
+  background: #17191f;
+  color: white;
+  padding: 42px 24px;
+}
+
+.header-content {
+  max-width: 1050px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #a7adb8;
+}
+
+h1 {
+  margin: 0;
+
+  font-size: 2.25rem;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  margin: 12px 0 0;
+
+  color: #b8bec8;
+  font-size: 1rem;
+}
+
+/* ------------------------------
+   Spotify Header Button
+------------------------------ */
+
+.spotify-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 11px 17px;
+
+  color: white;
+  text-decoration: none;
+
+  border: 1px solid #3d414a;
+  border-radius: 8px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.spotify-link:hover {
+  background: #272a31;
+  border-color: #5a606b;
+}
+
+.spotify-dot {
+  width: 9px;
+  height: 9px;
+
+  background: #1db954;
+  border-radius: 50%;
+}
+
+/* ------------------------------
+   Main Layout
+------------------------------ */
+
+.container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+.card {
+  margin-bottom: 24px;
+  padding: 30px;
+
+  background: white;
+  border: 1px solid #e2e5e9;
+  border-radius: 12px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* ------------------------------
+   Section Headers
+------------------------------ */
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 30px;
+
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #e8eaed;
+}
+
+.section-label {
+  margin: 0 0 5px;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+
+  color: #8a919c;
+}
+
+h2 {
+  margin: 0;
+
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.section-description {
+  max-width: 360px;
+
+  margin: 4px 0 0;
+
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ------------------------------
+   Artist Selection
+------------------------------ */
+
+.artist-section {
+  margin-bottom: 30px;
+}
+
+.artist-section:last-child {
+  margin-bottom: 0;
+}
+
+h3 {
+  margin: 0 0 12px;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.artist-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.artist-buttons button {
+  padding: 8px 13px;
+
+  background: #f7f8fa;
+  border: 1px solid #dfe2e6;
+  border-radius: 7px;
+
+  color: #303640;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.artist-buttons button:hover {
+  background: #eef0f3;
+  border-color: #c7cbd1;
+}
+
+.artist-buttons button:active {
+  transform: translateY(1px);
+}
+
+.subsection-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spotify-badge {
+  padding: 3px 7px;
+
+  background: #e8f8ed;
+  border-radius: 4px;
+
+  color: #16783a;
+
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.loading {
+  color: #8a919c;
+  font-size: 0.85rem;
+}
+
+/* ------------------------------
+   Search
+------------------------------ */
+
+.artist-search {
+  padding-top: 26px;
+
+  border-top: 1px solid #e8eaed;
+}
+
+.search-row {
+  display: flex;
+  max-width: 600px;
+  gap: 8px;
+}
+
+/* ------------------------------
+   Form
+------------------------------ */
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.label-row span {
+  color: #8a919c;
+  font-size: 0.75rem;
+}
+
+input,
+textarea {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  background: white;
+  border: 1px solid #d7dbe0;
+  border-radius: 7px;
+
+  color: #1f2937;
+
+  font: inherit;
+  font-size: 0.9rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #6b7280;
+
+  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.12);
+}
+
+textarea {
+  min-height: 300px;
+
+  resize: vertical;
+
+  line-height: 1.55;
+}
+
+.small-field {
+  max-width: 180px;
+}
+
+/* ------------------------------
+   Buttons
+------------------------------ */
+
+button {
+  font-family: inherit;
+}
+
+.primary-button,
+.secondary-button,
+.spotify-button {
+  border: 0;
+  border-radius: 7px;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    opacity 0.15s ease,
+    background 0.15s ease;
+}
+
+.primary-button {
+  padding: 12px 18px;
+
+  background: #252931;
+  color: white;
+}
+
+.primary-button:hover {
+  background: #16181d;
+}
+
+.secondary-button {
+  padding: 0 18px;
+
+  background: #252931;
+  color: white;
+}
+
+.secondary-button:hover {
+  background: #16181d;
+}
+
+.spotify-button {
+  padding: 12px 18px;
+
+  background: #1db954;
+  color: white;
+}
+
+.spotify-button:hover {
+  background: #18a449;
+}
+
+.primary-button:active,
+.secondary-button:active,
+.spotify-button:active {
+  transform: translateY(1px);
+}
+
+.text-button {
+  padding: 12px 4px;
+
+  background: transparent;
+  border: 0;
+
+  color: #6b7280;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.text-button:hover {
+  color: #252931;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding-top: 8px;
+}
+
+/* ------------------------------
+   Spotify Section
+------------------------------ */
+
+.spotify-card {
+  background: #fafbfc;
+}
+
+.spotify-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.spotify-action h3 {
+  margin-bottom: 5px;
+}
+
+.spotify-action p {
+  max-width: 600px;
+
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* ------------------------------
+   Footer
+------------------------------ */
+
+footer {
+  padding: 0 24px 30px;
+
+  text-align: center;
+
+  color: #9aa1ab;
+
+  font-size: 0.75rem;
+}
+
+/* ------------------------------
+   Responsive
+------------------------------ */
+
+@media (max-width: 700px) {
+  .page-header {
+    padding: 30px 20px;
+  }
+
+  .header-content {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .container {
+    padding: 20px 14px 40px;
+  }
+
+  .card {
+    padding: 22px 18px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .section-description {
+    max-width: none;
+  }
+
+  .search-row {
+    flex-direction: column;
+  }
+
+  .secondary-button {
+    min-height: 42px;
+  }
+
+  .spotify-action {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .spotify-button {
+    width: 100%;
+  }
+}
+
+/* ------------------------------
+   Tabs
+------------------------------ */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+
+  margin-bottom: 28px;
+
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.tab-button {
+  position: relative;
+
+  padding: 12px 18px;
+
+  background: transparent;
+  border: 0;
+
+  color: #737b87;
+
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.tab-button:hover {
+  color: #252931;
+}
+
+.tab-button.active {
+  color: #252931;
+}
+
+.tab-button.active::after {
+  content: "";
+
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+
+  height: 2px;
+
+  background: #252931;
+}
+
+.disabled-tab {
+  color: #b0b5bd;
+  cursor: not-allowed;
+}
+
+/* ------------------------------
+   Tab Content
+------------------------------ */
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ------------------------------
+   Tag Search
+------------------------------ */
+
+.tag-search {
+  max-width: 700px;
+}
+
+.helper-text {
+  margin: -4px 0 16px;
+
+  color: #737b87;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
